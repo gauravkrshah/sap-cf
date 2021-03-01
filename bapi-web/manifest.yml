@@ -1,0 +1,21 @@
+applications:
+- name: bapi-web
+  path: target/bapi-web-0.0.1-SNAPSHOT.war
+  buildpacks:
+  - sap_java_buildpack
+  disk_quota: 512M
+  env:
+    USE_JCO: "true"
+  instances: 1
+  memory: 1G
+  stack: cflinuxfs3
+  # This is necessary only if more than one instance is bound
+  xsuaa_connectivity_instance_name: "mx-cal-xsuaa"
+  connectivity_instance_name: "mx-cal-connectivity"
+  destination_instance_name: "mx-cal-destination"
+  application-logs_instance_name: "mx-cal-logging"
+  services:
+  - mx-cal-xsuaa
+  - mx-cal-connectivity
+  - mx-cal-destination
+  - mx-cal-logging
